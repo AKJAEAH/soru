@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Soru ve Cevap Oyunu</title>
+</head>
+<body>
+    <h1>Soru ve Cevap Oyunu</h1>
+    <p id="question"></p>
+    <input type="text" id="answer">
+    <button onclick="checkAnswer()">Cevapla</button>
+    <p id="result"></p>
+    <p id="score"></p>
+
+    <script>
+        var questions = [
+            {
+                question: "Dünyanın en yüksek dağı hangisidir?",
+                answer: "Everest"
+            },
+            {
+                question: "İstanbul'un sembolü olan boğazın adı nedir?",
+                answer: "Boğaziçi"
+            },
+            {
+                question: "İnsan vücudunda kaç tane kalp bulunur?",
+                answer: "1"
+            },
+            {
+                question: "En çok satan video oyun serisi hangisidir?",
+                answer: "Minecraft"
+            },
+            {
+                question: "Yer Çekimi kuvvetini bulan ünlü bilim insanı kimdir?",
+                answer: "Newton"
+            },
+            {
+                question: "Kahramanlarının isimlerini kullanarak hangi film serisi anlatılır? (Örnek: Tony Stark - Iron Man)",
+                answer: "Marvel Cinematic Universe"
+            },
+            {
+                question: "Renkli halkalarıyla ünlü logoya sahip teknoloji şirketi hangisidir?",
+                answer: "Apple"
+            },
+            {
+                question: "Güneş sistemindeki en büyük gezegen hangisidir?",
+                answer: "Jüpiter"
+            },
+            {
+                question: "Mona Lisa tablosu hangi ünlü sanatçıya aittir?",
+                answer: "Leonardo da Vinci"
+            },
+            {
+                question: "Türkiye'nin başkenti hangi şehirdir?",
+                answer: "Ankara"
+            },
+            {
+                question: "Matematikte 3.14159 değerine yakın olarak kullanılan sayı hangisidir?",
+                answer: "Pi"
+            },
+            {
+                question: "Hangi gezegenin uydusu Ay'dır?",
+                answer: "Dünya"
+            },
+            {
+                question: "İnsan gözü hangi renkleri algılayabilir?",
+                answer: "Kırmızı, yeşil, mavi"
+            },
+            {
+                question: "Hangi ülke Eiffel Kulesi'ne ev sahipliği yapmaktadır?",
+                answer: "Fransa"
+            },
+            {
+                question: "Kral Arthur'un efsanevi kılıcının adı nedir?",
+                answer: "Excalibur"
+            },
+            {
+                question: "Dünya üzerindeki en büyük deniz hangisidir?",
+                answer: "Pasifik Okyanusu"
+            },
+            {
+                question: "Çin takvimine göre 2022 yılında hangi hayvanın yılı olacak?",
+                answer: "Tavşan"
+            },
+            {
+                question: "Hangi gezegen en sıcak olan gezegendir?",
+                answer: "Venüs"
+            },
+            {
+                question: "Hangi ülke piramitleriyle ünlüdür?",
+                answer: "Mısır"
+            },
+            {
+                question: "Hangi şehir Amerika Birleşik Devletleri'nin başkentidir?",
+                answer: "Washington, D.C."
+            }
+        ];
+
+        var currentQuestion = 0;
+        var correctAnswers = 0;
+
+        function loadQuestion() {
+            var questionElement = document.getElementById("question");
+            questionElement.innerText = questions[currentQuestion].question;
+        }
+
+        function checkAnswer() {
+            var userAnswer = document.getElementById("answer").value;
+            var resultElement = document.getElementById("result");
+            var scoreElement = document.getElementById("score");
+
+            if (userAnswer.toLowerCase() === questions[currentQuestion].answer.toLowerCase()) {
+                resultElement.innerText = "Tebrikler! Doğru cevap.";
+                correctAnswers++;
+            } else {
+                resultElement.innerText = "Maalesef, yanlış cevap.";
+            }
+
+            currentQuestion++;
+            if (currentQuestion < questions.length) {
+                loadQuestion();
+            } else {
+                resultElement.innerText += " Oyun bitti!";
+                document.getElementById("answer").disabled = true;
+                scoreElement.innerText = "Doğru cevapladığınız soru sayısı: " + correctAnswers + "/" + questions.length;
+            }
+        }
+
+        loadQuestion();
+    </script>
+</body>
+</html>
